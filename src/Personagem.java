@@ -1,11 +1,6 @@
 public class Personagem {
 
-    private String nome;
-
-
-    public Personagem(String nome) {
-        this.nome = nome;
-    }
+    private Boolean key;//key de gay
 
     public boolean mover(String comando, Labirinto labirinto) {
         switch (comando) {
@@ -119,12 +114,22 @@ public class Personagem {
         return visao;
     }
 
+    public void pegarChave(Labirinto labirinto) {
+        this.setKey(true);
+        labirinto.liberarSaida();
+        throw new PegouChaveException();
+    }
+
+    public void setKey(Boolean key) {
+        this.key = key;
+    }
+
+    public Boolean getKey() {
+        return key;
+    }
+
     @Override
     public String toString() {
         return "P";
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 }

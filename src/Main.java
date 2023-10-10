@@ -1,16 +1,21 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
-    private static Scanner sc = new Scanner(System.in);
-    private static Personagem personagem = new Personagem("Personagem");
-    private static Labirinto labirinto = new Labirinto(personagem);
+    private final static Scanner sc = new Scanner(System.in);
+    private final static Personagem personagem = new Personagem();
+    private final static Labirinto labirinto = new Labirinto(personagem);
 
     public static void main(String[] args) {
-        //System.out.println(labirinto.mostrarLabirinto());
+//        System.out.println(labirinto.mostrarLabirinto());
         do{
             System.out.println(personagem.getVisao(labirinto));
-            personagem.mover(menu(), labirinto);
+            try {
+                personagem.mover(menu(), labirinto);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }while(!personagem.escapouLabirinto(labirinto));
         System.out.println("Parabens você escapou!!!!");
     }
@@ -25,5 +30,4 @@ public class Main {
                 """);
         return sc.next();
     }
-
 }
